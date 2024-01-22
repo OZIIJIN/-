@@ -1,0 +1,30 @@
+class Solution {
+    public String solution(String s, int n) {
+        String answer = "";
+        char[] sToc = s.toCharArray();
+        for(int i = 0; i < sToc.length; i++){
+            if(sToc[i] != ' '){
+                char letter = sToc[i];
+                
+                if(Character.isUpperCase(letter)){
+                    if(letter+n > 'Z'){
+                        sToc[i] = (char)(letter + n - 26);
+                    }
+                    else{
+                        sToc[i] = (char)(letter + n);
+                    }
+                }
+                else{
+                    if(letter+n > 'z'){
+                        sToc[i] = (char)(letter + n - 26);
+                    }
+                    else{
+                        sToc[i] = (char)(letter + n);
+                    }
+                }
+            }
+        }
+        answer = String.valueOf(sToc);
+        return answer;
+    }
+}
