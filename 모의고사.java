@@ -32,6 +32,7 @@ class Solution {
             }
         }
         
+        
         //최댓값과 동일한 수포자 리스트 생성
         List<Integer> answerpeople = new ArrayList<>();
         for(int i = 0; i < answer.length; i++){
