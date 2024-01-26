@@ -5,8 +5,6 @@ class Solution {
     public int solution(int[] nums) {
         int count = 0;
         List<Integer> answerList = new ArrayList<>();
-        List<Integer> sumList = new ArrayList<>();
-        
         
         // 3개의 숫자 조합별 합 구하기
         for(int i = 0; i< nums.length-2; i++){
