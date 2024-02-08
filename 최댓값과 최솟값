@@ -20,7 +20,8 @@ class Solution {
                 min = intarr[i];
             }
         }
-        
+
+        //문자열로 반환
         int[] answer = new int[2];
         answer[0] = min;
         answer[1] = max;
