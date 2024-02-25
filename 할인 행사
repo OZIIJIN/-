@@ -1,0 +1,27 @@
+import java.util.Map;
+import java.util.HashMap;
+
+class Solution {
+    public int solution(String[] want, int[] number, String[] discount) {
+        int answer = 0;
+        Map<String, Integer> map = new HashMap<>();
+        Map<String, Integer> wantMap = new HashMap<>();
+        
+        for(int i = 0; i < want.length; i++){
+            map.put(want[i], number[i]);
+        }
+        
+        for(int i = 0; i < discount; i++){
+            for(int j = i; j <=i+9; j++){
+                for(String s : want){
+                    if(discount[j].eqauls(s)){
+                        map.put(s, map.getOrDefault(s, 0) + 1);
+                    }
+                }
+                if()
+            }
+        }
+        
+        return answer;
+    }
+}
