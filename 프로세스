@@ -1,0 +1,41 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int[] priorities, int location) {
+        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q_num = new LinkedList<>();
+        List<Integer> finish = new ArrayList<>();
+        
+        // 큐 세팅
+        for(int i = 0; i < priorities.length; i++) {
+            q.offer(priorities[i]);
+            q_num.offer(i);
+        }
+        
+        // 우선순위에 따라 재배열
+        while(!q.isEmpty()) {
+            int num1 = q.poll();
+            int num2 = q_num.poll();
+            
+            // proQueue에 있는 요소들 중에서 현재 값(value)보다 큰 값을 찾는 반복문
+            boolean foundLarger = false;
+            for (Integer number : q) {
+                if (number > num1) {
+                    foundLarger = true;
+                    break;
+                }
+            }
+
+            // 현재 값(num1)보다 큰 값이 없으면 finish에 추가
+            if (!foundLarger) {
+                finish.add(num2);
+            } else {
+                // 현재 값(num1)보다 큰 값이 있으면 q와 q_num에 각각 추가
+                q.add(num1);
+                q_num.add(num2);
+            }
+        }
+        
+        return finish.indexOf(location) + 1;
+    }
+}
