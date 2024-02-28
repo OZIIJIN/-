@@ -17,7 +17,7 @@ class Solution {
             int num1 = q.poll();
             int num2 = q_num.poll();
             
-            // proQueue에 있는 요소들 중에서 현재 값(value)보다 큰 값을 찾는 반복문
+            // q에 있는 요소들 중에서 현재 값(num1)보다 큰 값을 찾는 반복문
             boolean foundLarger = false;
             for (Integer number : q) {
                 if (number > num1) {
