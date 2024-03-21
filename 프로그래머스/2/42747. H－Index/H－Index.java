@@ -1,0 +1,27 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+class Solution {
+    public int solution(int[] citations) {
+        
+        List<Integer> hindexList = new ArrayList<>();
+        
+        for(int c : citations){
+            int count = over(citations, c);
+            int min = Math.min(c, count);
+            hindexList.add(min);
+        }
+        
+        int answer = Collections.max(hindexList);
+        return answer;
+    }
+    public int over(int[] citations, int num){
+        int count = 0;
+        for(int n : citations){
+            if(num <= n){
+                count++;
+            }
+        }
+        return count;
+    }
+}
