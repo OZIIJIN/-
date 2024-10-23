@@ -1,56 +1,45 @@
 import java.util.*;
 class Solution {
-    class Point {
-        public int x;
-        public int y;
-        
-        public Point(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-    public Queue<Point> q = new LinkedList<>();
-    public int[] dx = {1, 0, -1, 0};
-    public int[] dy = {0, 1, 0, -1};
-    public int[][] dist;
-    public boolean check;
+    int[] dx = {1, 0, -1, 0};
+    int[] dy = {0, 1, 0, -1};
     public int solution(int[][] maps) {
-        check = false;
-        dist = new int[maps.length][maps[0].length];
-        dist[0][0] = 1;
+        int answer = 0;
         
-        return move(0,0, maps);
-    }
-    public int move(int x, int y, int[][] maps) {
-        Point p = new Point(x, y);
-        q.add(p);
-        maps[x][y] = 0;
+        int[][] visited = new int[maps.length][maps[0].length];
         
-        while(q.size() > 0) {
-            Point tmp = q.poll();
-            if(tmp.x == maps.length-1 && tmp.y == maps[0].length-1) {
-                return dist[tmp.x][tmp.y];
-            }
-            
-            for(int i = 0; i < 4; i++) {
-                int nextX = tmp.x + dx[i];
-                int nextY = tmp.y + dy[i];
-                if(nextX < 0 || nextY < 0 || nextX > maps.length - 1 || nextY > maps[0].length - 1) {
-                    continue;
-                }
-                if(maps[nextX][nextY] == 0) {
-                    continue;
-                } else {
-                    Point nextPoint = new Point(nextX, nextY);
-                    q.add(nextPoint);
-                    maps[nextX][nextY] = 0;
-                    dist[nextX][nextY] = dist[tmp.x][tmp.y] + 1;
-                }
-                
-            }
+        bfs(maps, visited);
+        answer = visited[maps.length-1][maps[0].length-1];
+        
+        if(answer == 0) {
+            return answer = -1;
         }
-        return -1;
         
+        return answer;
     }
     
+    private void bfs(int[][] maps, int[][] visited) {
+        int x = 0;
+        int y = 0;
+        visited[x][y] = 1;
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{x, y});
+        
+        while(!queue.isEmpty()) {
+            int[] temp = queue.poll();
+            int tempX = temp[0];
+            int tempY = temp[1];
+            
+            for(int i = 0; i < 4; i++) {
+                int nextX = tempX + dx[i];
+                int nextY = tempY + dy[i];
+                
+                if (nextX < 0 || nextX > maps.length-1 || nextY < 0 || nextY > maps[0].length-1){continue;}
+                
+                if(visited[nextX][nextY] == 0 && maps[nextX][nextY] == 1) {
+                        visited[nextX][nextY] = visited[tempX][tempY] + 1;
+                        queue.add(new int[]{nextX, nextY});
+                    }
+            }
+        }
+    }
 }
