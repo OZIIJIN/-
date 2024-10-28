@@ -1,34 +1,19 @@
+import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.Collections;
+
 class Solution {
     public String solution(String s) {
-        String[] arr = s.split(" ");
-        StringBuilder stringBuilder = new StringBuilder();
         
-        //String 배열 int 배열로 변환
-        int[] intarr = new int[arr.length];
-        for(int i = 0; i < arr.length; i++){
-            intarr[i] = Integer.parseInt(arr[i]);
-        }
+        List<Integer> numbers = Arrays.stream(s.split(" "))
+            .map(Integer :: parseInt)
+            .collect(Collectors.toList());
         
-        //최대 최소 찾기
-        int max = intarr[0];
-        int min = intarr[1];
-        for(int i = 0; i < intarr.length; i++){
-            if(max < intarr[i]){
-                max = intarr[i];
-            }
-            if(min > intarr[i]){
-                min = intarr[i];
-            }
-        }
+        Collections.sort(numbers);
         
-        int[] answer = new int[2];
-        answer[0] = min;
-        answer[1] = max;
-        
-        stringBuilder.append(min);
-        stringBuilder.append(" ");
-        stringBuilder.append(max);
-        
-        return String.valueOf(stringBuilder);
+        String answer = numbers.get(0).toString() + " " + numbers.get(numbers.size() -1).toString();
+
+        return answer;
     }
 }
