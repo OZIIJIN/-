@@ -1,21 +1,17 @@
 import java.util.*;
-
 class Solution
 {
-    public int solution(int[] A, int[] B) {
+    public int solution(int[] A, int[] B)
+    {
+        // 최소와 최대를 곱하면 됨
         int answer = 0;
-        PriorityQueue<Integer> qA = new PriorityQueue<>();
-        PriorityQueue<Integer> qB = new PriorityQueue<>(Collections.reverseOrder());
+        
+        Arrays.sort(A);
+        Arrays.sort(B);
 
-        for (int i = 0; i < A.length; i++) {
-            qA.add(A[i]);
-            qB.add(B[i]);
+        for(int i = 0; i < A.length; i++){
+            answer += A[i]*B[B.length - 1 -i];
         }
-
-        while (!qA.isEmpty()) {
-            answer += qA.poll() * qB.poll();
-        }
-
         return answer;
     }
 }
